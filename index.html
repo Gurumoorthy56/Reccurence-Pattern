@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recurrence Pattern - 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="overlay" style="display: none;"></div>
+    <section id="wrapper">
+        <div id="all-panel" class="body" style="display: none;">
+            <div class="d-flex justify-content-end"><span id="model-close" onclick="togglePanel(this)">X</span></div>
+            <!-- <div class="tab-list">
+
+                <li class="tab-title active" value="1">Daily</li>
+                <li class="tab-title" value="2">Weekly</li>
+                <li class="tab-title" value="3">Monthly</li>
+                <li class="tab-title" value="4">Yearly</li>
+
+            </div> -->
+            <div id="panel-1" class="panel active">
+                <div class="panel-content">
+                    <div>
+                        <div class="my-2">
+                            <span style="margin-right: 50px;">Start</span>
+                            <input style="margin-right: 80px;" type="date" name="start-date" id="start-date"
+                                value="2024-11-01">
+                            <!-- <input type="time" name="from-time" id="from-time"> -->
+                        </div>
+                        <p><span>Repeat every</span>
+                            <input id="repeat-every-1" class="" type="number" min="1" max="999" autocomplete="off"
+                                value="1">
+                            <span>
+                                <select name="time-interval" id="time-interval">Day
+                                    <option value="day">Day</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                    <option value="year">Year</option>
+                                </select>
+                            </span>
+                            <span>beginning</span>
+                            <span class="f-date" style="font-style: italic;">Fri Nov 01
+                                2024</span>
+                        </p>
+
+                        <div id="Weekly" class="weekly-days mb-3" style="display: none;">
+                            <span>on</span>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="SU" name="SU" class="form__checkbox-off"
+                                        value="SU"><label for="SU"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Sun</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="MO" name="MO" class="" value="MO"><label
+                                        for="MO"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Mon</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="TU" name="TU" class="" value="TU"><label
+                                        for="TU"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Tue</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="WE" name="WE" class="" value="WE"><label
+                                        for="WE"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Wed</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="TH" name="TH" class="" value="TH"><label
+                                        for="TH"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Thu</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="FR" name="FR" class="" value="FR"><label
+                                        for="FR"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Fri</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="SA" name="SA" class="" value="SA"><label
+                                        for="SA"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Sat</span></div>
+                            </div>
+                        </div>
+
+                        <div id="Monthly" style="display: none;">
+                            <div>
+                                <input type="radio" value="on-day" name="month-option" id="on-day" checked>
+                                <label for="on-day">On day</label>
+                                <select name="months" id="months" class="ms-4" style="display: none;">
+                                    <option value="january">January</option>
+                                    <option value="february">February</option>
+                                    <option value="march">March</option>
+                                    <option value="april">April</option>
+                                    <option value="may">May</option>
+                                    <option value="june">June</option>
+                                    <option value="july">July</option>
+                                    <option value="august">August</option>
+                                    <option value="september">September</option>
+                                    <option value="october">October</option>
+                                    <option value="november">November</option>
+                                    <option value="december">December</option>
+                                </select>
+                                <input id="day-month" style="width: 55px; margin-left: 10px;" type="number" min="1"
+                                    max="31" autocomplete="off" value="1">
+
+                            </div>
+                            <div class="mt-2">
+                                <input type="radio" value="on-the" name="month-option" id="on-the">
+                                <label for="on-the">On the</label>
+                                <select name="order" id="order" class="ms-3" disabled>
+                                    <option value="1">First</option>
+                                    <option value="2">second</option>
+                                    <option value="3">Third</option>
+                                    <option value="4">Fourth</option>
+                                    <option value="5">Last</option>
+
+                                </select>
+                                <select name="on-the-mon" id="on-the-mon" class="ms-2" disabled>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </select>
+                                <div id="months-on-the" style="display: none;">
+                                    <span>Of</span>
+                                    <select name="months" class="ms-2" disabled>
+                                        <option value="january">January</option>
+                                        <option value="february">February</option>
+                                        <option value="march">March</option>
+                                        <option value="april">April</option>
+                                        <option value="may">May</option>
+                                        <option value="june">June</option>
+                                        <option value="july">July</option>
+                                        <option value="august">August</option>
+                                        <option value="september">September</option>
+                                        <option value="october">October</option>
+                                        <option value="november">November</option>
+                                        <option value="december">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="continue-options-div mt-3">
+                            <span>and continuing</span>
+                            <select class="rec-till">
+                                <option value="forever">forever</option>
+                                <option value="count">for</option>
+                                <option value="until">until</option>
+                            </select>
+                            <div id="" class="continue-options continue-option-1">
+                                <input type="number" name="count-number" id="count-number-1" value="5">
+                                <span>occurences</span>
+                            </div>
+                            <div id="" class="continue-options continue-option-2">
+                                <input type="date" name="until-date" id="until-date-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span id="Done" class="btn btn-success done" onclick="togglePanel()">Done</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- <div id="panel-2" class="panel" style="height: 230px;">
+                <div class="panel-content">
+                    <div>
+                        <p>
+                            <span>Repeat every</span>
+                            <input id="repeat-every-3" class="" type="number" min="1" max="999" autocomplete="off"
+                                value="1">
+                            <span>week</span> <span>beginning</span>
+                            <span class="f-date" style="font-style: italic;">Fri Nov 01 2024</span>
+                        </p>
+                        <div class="weekly-days mb-3">
+                            <span>on</span>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="SU" name="SU" class="form__checkbox-off"
+                                        value="SU"><label for="SU"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Sun</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="MO" name="MO" class="" value="MO"><label
+                                        for="MO"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Mon</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="TU" name="TU" class="" value="TU"><label
+                                        for="TU"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Tue</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="WE" name="WE" class="" value="WE"><label
+                                        for="WE"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Wed</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="TH" name="TH" class="" value="TH"><label
+                                        for="TH"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Thu</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="FR" name="FR" class="" value="FR"><label
+                                        for="FR"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Fri</span></div>
+                            </div>
+                            <div class="checkbox-label">
+                                <div class="input"><input type="checkbox" id="SA" name="SA" class="" value="SA"><label
+                                        for="SA"></label>
+                                </div>
+                                <div class="label"><span class="chx-span">Sat</span></div>
+                            </div>
+                        </div>
+                        <div class="continue-options-div">
+                            <span>and continuing</span>
+                            <select class="rec-till">
+                                <option value="forever">forever</option>
+                                <option value="count">for</option>
+                                <option value="until">until</option>
+                            </select>
+                            <div id="" class="continue-options continue-option-1">
+                                <input type="number" name="count-number" id="count-number-3" value="5" disabled>
+                                <span>occurences</span>
+                            </div>
+                            <div id="" class="continue-options continue-option-2">
+                                <input type="date" name="until-date" id="until-date-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-success" id="" onclick="togglePanel(this)">Done</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-3" class="panel" style="height: 230px;">
+                <div class="panel-content">
+                    <div>
+                        <p>
+                            <span>Repeat every</span>
+                            <input id="repeat-every-4" class="" type="number" min="1" max="999" autocomplete="off"
+                                value="1">
+                            <span>month</span> <span>beginning</span>
+                            <span class="f-date" style="font-style: italic;">Fri Nov 01 2024</span>
+                        </p>
+                        <p>
+                            <span>on the</span>
+                            <select class="">
+                                <option value="">12th day</option>
+                                <option value="">3nd Saturday</option>
+                                <option value="">last day</option>
+                            </select>
+                            <span>of each</span> <span>month</span>
+                        </p>
+                        <div class="continue-options-div">
+                            <span>and continuing</span>
+                            <select class="rec-till">
+                                <option value="forever">forever</option>
+                                <option value="count">for</option>
+                                <option value="until">until</option>
+                            </select>
+                            <div id="" class="continue-options continue-option-1">
+                                <input type="number" name="count-number" id="count-number-4" value="5" disabled>
+                                <span>occurences</span>
+                            </div>
+                            <div id="" class="continue-options continue-option-2">
+                                <input type="date" name="until-date" id="until-date-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-success done" onclick="togglePanel()">Done</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-4" class="panel" style="height: 230px;">
+                <div class="panel-content">
+                    <div>
+                        <p>
+                            <span>Repeat every</span>
+                            <input id="repeat-every-5" class="" type="number" min="1" max="999" autocomplete="off"
+                                value="1">
+                            <span>year</span> <span>beginning</span>
+                            <span class="f-date" style="font-style: italic;">Fri Nov 01 2024</span>
+                        </p>
+                        <p>
+                            <span>on the</span> <select class="">
+                                <option value="" selected="">12th day in February</option>
+                                <option value="">2nd Sunday in February</option>
+                                <option value="">last day of February</option>
+
+                            </select> <span>of each</span> <span>year</span>
+                        </p>
+                        <div class="continue-options-div">
+                            <span>and continuing</span>
+                            <select class="rec-till">
+                                <option value="forever">forever</option>
+                                <option value="count">for</option>
+                                <option value="until">until</option>
+                            </select>
+                            <div id="" class="continue-options continue-option-1">
+                                <input type="number" name="count-number" id="count-number-5" value="5" disabled>
+                                <span>occurences</span>
+                            </div>
+                            <div id="" class="continue-options continue-option-2">
+                                <input type="date" name="until-date" id="until-date-5">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-success done" onclick="togglePanel()">Done</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="content" style="scale: 0.9;">
+            <form action="#" id="Event-form" class="mb-5">
+                <div>
+                    <input type="text" class="input-search search-bar rounded" name="Event-name" id="Event-name"
+                        placeholder="Enter Event tittle">
+                </div>
+                <div class="w-100 mt-3 ps-2 d-flex">
+                    <div class=" mt-3 me-4">
+                        <span style="margin-right: 15px; font-size: 19px;">From</span>
+                        <input style="margin-right: 10px;" type="date" name="from-date" id="from-date"
+                            value="2024-11-01" required>
+                        <input type="time" name="from-time" id="from-time">
+                    </div>
+                    <div id="to-date-div" class=" mt-3 ms-2">
+                        <span style="margin-right: 15px; font-size: 19px;">To</span>
+                        <input style="margin-right: 10px;" type="date" name="to-date" id="to-date" value="2024-11-02"
+                            onchange="setDiff()" required>
+                        <input type="time" name="to-time" id="to-time" onchange="setDiff()">
+                    </div>
+                    <div id="time-diff" class=" mt-3 ms-3 pt-2"></div>
+                </div>
+                <div class="ms-3 mt-5 ">
+                    <div class="mb-2">
+                        <input type="checkbox" name="All-Day" id="All-Day" onclick="toggle(this)">
+                        <label for="All-Day">All-Day</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="Repeat" id="Repeat">
+                        <label for="Repeat">Repeat</label>
+                        <!-- <em class="ms-2">Daily</em> -->
+                    </div>
+                </div>
+
+
+
+                <div class="d-flex justify-content-between mt-2">
+                    <input id="save" type="submit" value="SAVE" class="btn btn-success mt-4 "
+                        style="font-size: inherit;">
+                    <input id="clear" type="button" class="btn btn-danger mt-4" value="CLEAR"
+                        style="font-size: inherit;">
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <section>
+        <div id="output" style="display: none;">
+
+
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
