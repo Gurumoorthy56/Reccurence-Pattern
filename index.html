@@ -341,25 +341,26 @@
             </div> -->
         </div>
 
-        <div class="content ">
-            <form action="#" id="Event-form">
+        <div class="content" style="scale: 0.9;">
+            <form action="#" id="Event-form" class="mb-5">
                 <div>
                     <input type="text" class="input-search search-bar rounded" name="Event-name" id="Event-name"
                         placeholder="Enter Event tittle">
                 </div>
-                <div class="w-100 mt-5 ps-4 d-flex">
+                <div class="w-100 mt-3 ps-2 d-flex">
                     <div class=" mt-3 me-4">
-                        <span style="margin-right: 15px; font-size: 18px;">From</span>
+                        <span style="margin-right: 15px; font-size: 19px;">From</span>
                         <input style="margin-right: 10px;" type="date" name="from-date" id="from-date"
                             value="2024-11-01" required>
                         <input type="time" name="from-time" id="from-time">
                     </div>
-                    <div id="to-date-div" class=" mt-3 ms-5">
-                        <span style="margin-right: 15px; font-size: 18px;">To</span>
+                    <div id="to-date-div" class=" mt-3 ms-2">
+                        <span style="margin-right: 15px; font-size: 19px;">To</span>
                         <input style="margin-right: 10px;" type="date" name="to-date" id="to-date" value="2024-11-02"
-                            required>
-                        <input type="time" name="to-time" id="to-time">
+                            onchange="setDiff()" required>
+                        <input type="time" name="to-time" id="to-time" onchange="setDiff()">
                     </div>
+                    <div id="time-diff" class=" mt-3 ms-3 pt-2"></div>
                 </div>
                 <div class="ms-3 mt-5 ">
                     <div class="mb-2">
@@ -375,9 +376,11 @@
 
 
 
-                <div class="d-flex justify-content-between mt-5">
-                    <input id="save" type="submit" value="SAVE" class="btn btn-success mt-4">
-                    <input id="clear" type="button" class="btn btn-danger mt-4" value="CLEAR">
+                <div class="d-flex justify-content-between mt-2">
+                    <input id="save" type="submit" value="SAVE" class="btn btn-success mt-4 "
+                        style="font-size: inherit;">
+                    <input id="clear" type="button" class="btn btn-danger mt-4" value="CLEAR"
+                        style="font-size: inherit;">
                 </div>
             </form>
 

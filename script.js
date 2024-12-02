@@ -22,9 +22,52 @@ document.querySelector("#from-date").addEventListener('change', () => {
     toDate.min = `${year}-${month}-${day}`;
     toDate.value = `${year}-${month}-${day}`;
     document.querySelector('#start-date').value = `${year}-${month}-${day}`;
+    document.querySelector('#day-month').value = fromDate.getDate();
 
     document.querySelector('#to-date-div').style.display = 'block'
 })
+
+document.querySelector('#to-date-div').addEventListener('click', () => {
+    setDiff();
+})
+
+
+function setDiff() {
+    const fromDate = new Date(document.querySelector('#from-date').value);
+    const toDate = new Date(document.querySelector('#to-date').value);
+    settingTime(fromDate, 0); settingTime(toDate, 1);
+    let diff = calculateTimeDifference(fromDate, toDate);
+    console.log(diff)
+    console.log(typeof diff)
+    document.querySelector('#time-diff').textContent = diff;
+}
+
+function calculateTimeDifference(startTime, endTime) {
+    const startDate = new Date(startTime);
+    const endDate = new Date(endTime);
+
+    const differenceInMillis = endDate - startDate;
+
+    const totalMinutes = Math.floor(differenceInMillis / (1000 * 60));
+
+    const days = Math.floor(totalMinutes / (60 * 24));
+    const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+    const minutes = totalMinutes % 60;
+
+    let result = '';
+    if (days > 0) {
+        result += `${days}d`;
+    }
+    if (hours > 0 || days > 0) {
+        result += `${hours}h`;
+    }
+    if (minutes > 0 || (days === 0 && hours === 0)) {
+        result += `${minutes}min`;
+    }
+
+    return result;
+}
+
 
 document.querySelector('#start-date').addEventListener('change', () => {
     const fromDate = document.querySelector("#to-date");
@@ -32,21 +75,13 @@ document.querySelector('#start-date').addEventListener('change', () => {
     const year = startDate.getFullYear();
     const month = String(startDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
     const day = String(startDate.getDate()).padStart(2, '0');
+    document.querySelector('#day-month').value = startDate.getDate();
 
     // Set the min value for the to-date input
     document.querySelector('#from-date').value = `${year}-${month}-${day}`;
 })
 
-document.querySelector('#Done').addEventListener('click', () => {
-    const dayMonth = document.querySelector('#day-month').value ?? null;
-    const onThe = document.querySelector('#on-the').checked;
-    let lastDay;
-    if (!onThe) {
-        if (dayMonth == '31') {
 
-        }
-    }
-})
 
 document.querySelector('#time-interval').addEventListener('click', (e) => {
     switch (e.target.value) {
@@ -173,6 +208,11 @@ document.getElementById('Event-form').addEventListener('submit', (e) => {
     // const startDate = new Date(document.querySelector('#start-date').value);
     const toDate = new Date(document.querySelector('#to-date').value);
     settingTime(fromDate, 0); settingTime(toDate, 1);
+    var diff = toDate - fromDate;
+    if (diff < 0) {
+        alert("Invalid Start time and End time")
+        return
+    }
 
 
     if (!repeat.checked) {
@@ -358,6 +398,7 @@ function monthly(eventTitle, fromDate, toDate) {
     let toPrint = parseInt(document.querySelector('#count-number-1').value);
     const recTill = document.querySelector("#panel-1 .rec-till").value;
     if (recTill !== 'count') { toPrint = 10; }
+    // document.querySelector('#day-month').value = fromDate.getDate();
     // settingTime(fromDate, 0); settingTime(toDate, 1);
 
     var diff = toDate - fromDate;
@@ -402,6 +443,7 @@ function monthly(eventTitle, fromDate, toDate) {
                  </div>`;
                             toPrint--;
                             first_time = 0;
+                            fromDate.setMonth(fromDate.getMonth() + parseInt(repeat1) - 1);
                         }
                     }
                     else if (parseInt(onDay) === 31) {
@@ -426,6 +468,10 @@ function monthly(eventTitle, fromDate, toDate) {
                             innerText += `<div class="ms-3">
                      <div>${fromDate.toString().split(' GMT')[0]}  - ${toDate.toString().split(' GMT')[0]}</div>
                  </div>`;
+                            fromDate.setDate(27)
+                            fromDate.setMonth(fromDate.getMonth() + parseInt(repeat1));
+
+
                             toPrint--;;
                         }
                         else {
@@ -439,6 +485,8 @@ function monthly(eventTitle, fromDate, toDate) {
                                 innerText += `<div class="ms-3">
                      <div>${fromDate.toString().split(' GMT')[0]}  - ${toDate.toString().split(' GMT')[0]}</div>
                  </div>`;
+                                fromDate.setMonth(fromDate.getMonth() + parseInt(repeat1) - 1);
+
                                 toPrint--;
                                 first_time = 0;
                             }
@@ -507,6 +555,7 @@ function monthly(eventTitle, fromDate, toDate) {
                                 innerText += `<div class="ms-3">
                      <div>${fromDate.toString().split(' GMT')[0]}  - ${toDate.toString().split(' GMT')[0]}</div>
                  </div>`;
+
                                 printCount++
                                 // toPrint--;
                                 const year = fromDate.getFullYear();
@@ -514,6 +563,8 @@ function monthly(eventTitle, fromDate, toDate) {
                                 const hours = fromDate.getHours();
                                 const minutes = fromDate.getMinutes();
                                 fromDate = new Date(year, month + 1, 1, hours, minutes);
+                                fromDate.setMonth(fromDate.getMonth() + parseInt(repeat1) - 1);
+
                                 order = parseInt(document.querySelector('#order').value);
                                 first_time = 0;
                             }
@@ -549,7 +600,10 @@ function monthly(eventTitle, fromDate, toDate) {
                             const hours = fromDate.getHours();
                             const minutes = fromDate.getMinutes();
                             fromDate = new Date(year, month + 1, 1, hours, minutes);
+                            fromDate.setMonth(fromDate.getMonth() + parseInt(repeat1) - 1);
+
                             fromDate.setDate(fromDate.getDate() - 1);
+
                             f = 1;
                             printCount++;
                         }

@@ -4,8 +4,10 @@ body {
     background-color: #f0f0f0;
     color: white;
     cursor: default;
-    /* scale: 0.9; */
+    font-size: 14px;
 }
+
+
 
 ::selection {
     background-color: black;
@@ -13,13 +15,14 @@ body {
 }
 
 #wrapper {
-    max-width: 800px;
-    height: 400px;
+    max-width: 720px;
+    height: 300px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 20px 0 30px 0;
     background-color: #282c34;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* scale: 0.9; */
 }
 
 #output {
@@ -54,6 +57,7 @@ input[type='time'] {
     padding-right: 10px;
     /* border-radius: var(--bs-border-radius) !important; */
     border: 1px solid grey;
+    height: 30px;
 }
 
 .checkbox-label,
@@ -147,7 +151,7 @@ input[type='time'] {
 
 #model-close {
     font-size: 26px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     cursor: pointer;
 }
 
@@ -162,22 +166,35 @@ input[type='time'] {
     position: fixed;
     /* background-color: rgb(200, 195, 195) !important; */
     background-color: rgba(0, 0, 0, 0.6) !important;
-    z-index: 5;
+    z-index: 4;
 }
 
 #all-panel {
     position: absolute !important;
     top: 15%;
-    left: 35%;
-    width: 30%;
+    left: 32.5%;
+    width: 35%;
     background-color: rgb(16, 42, 65);
     border: .5px solid rgba(255, 255, 255, 0.547);
     /* box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); */
     /* box-shadow: 0 8px 8px -4px lightblue; */
     box-shadow: 0 -5px 3px -3px black, 0 5px 3px -3px;
-    padding: 20px;
+    padding: 15px;
+    padding-top: 5px;
     border-radius: 20px;
 
     z-index: 10;
     /* opacity:  !important; */
+}
+
+#time-diff {
+    font-size: 16px;
+    font-family: monospace;
+    letter-spacing: .3rem;
+    /* background-color: #dad7d7; */
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    padding-bottom: 5px;
 }
