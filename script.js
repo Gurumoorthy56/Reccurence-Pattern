@@ -35,6 +35,7 @@ function setMinDate() {
     document.getElementById('start-date').setAttribute('min', formattedDate);
 
     document.getElementById('from-date').setAttribute('value', formattedDate);
+    document.getElementById('start-date').setAttribute('value', formattedDate);
 
 }
 
